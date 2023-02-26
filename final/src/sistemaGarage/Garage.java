@@ -10,6 +10,7 @@ public class Garage {
     private double wheelChangePrice;
     private ArrayList<Vehicles> vehicles;
 
+
     public void vehicleEntry(Vehicles vehicle){
         if (currentAumountOfVehicles == maximunSizeOfTheGarage){
             System.out.println("El garage esta lleno");
@@ -287,4 +288,4 @@ public class Garage {
      }
 
 }
-}
+

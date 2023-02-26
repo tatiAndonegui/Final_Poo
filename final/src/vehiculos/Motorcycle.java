@@ -2,7 +2,7 @@ package vehiculos;
 
 import sistemaGarage.Garage;
 
-public class Motorcycle {
+public class Motorcycle extends Vehicles {
     private String displacement;
 
     public String getDisplacement() {

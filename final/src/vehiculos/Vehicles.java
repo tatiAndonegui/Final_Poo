@@ -1,6 +1,6 @@
 package vehiculos;
 
-public class Vehicles {
+public  class Vehicles {
     private String brand;
     private int kilometers;
     private int totalWheels;
