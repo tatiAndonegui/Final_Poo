@@ -11,7 +11,7 @@ public class Llave extends EtapaMundial{
             Equipo visitante=listaPartidos.get(i).getVisitante();
             Equipo local=listaPartidos.get(i).getLocal();
             Resultado resultado=listaPartidos.get(i).getResultado();
-            System.out.println(visitante.getNombre() + ": " + resultado.getGolesVisitante() + " " + local.getNombre() + ": " + resultado.getGolesLocales());
+
             if (resultado.empate()){
                 int ganadorPorPenales= (int) (Math.random() * 2);
                 if (ganadorPorPenales==0){

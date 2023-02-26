@@ -12,4 +12,9 @@ public class Car extends Vehicles {
     public void setNumberOfDoors(int numberOfDoors) {
         this.numberOfDoors = numberOfDoors;
     }
+
+    @Override
+    public String toString() {
+        return "auto [brand= " + super.getBrand() + " kilometers= " + super.getKilometers() +" total wheels= " + super.getTotalWheels() + " numberofdoors= " + this.numberOfDoors +"]";
+    }
 }

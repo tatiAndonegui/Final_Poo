@@ -3,12 +3,15 @@ import Mundial.*;
 import vehiculos.Vehicles;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Scanner;
 
 public class Garage {
     private int maximunSizeOfTheGarage;
     private int currentAumountOfVehicles;
     private double wheelChangePrice;
-    private ArrayList<Vehicles> vehicles;
+    private ArrayList<Vehicles> vehicles = new  ArrayList<Vehicles>();
+
+
 
 
     public void vehicleEntry(Vehicles vehicle){
@@ -16,17 +19,28 @@ public class Garage {
             System.out.println("El garage esta lleno");
         } else {
             this.vehicles.add(vehicle);
+            System.out.println("Se ingreso el vehiculo " + vehicle);
             currentAumountOfVehicles = currentAumountOfVehicles + 1;
         }
 
     }
-    public void vehicleExit(Vehicles vehicle){
+    public void vehicleExit(Vehicles vehicle, String WorldCupChampion){
         if (currentAumountOfVehicles == 0){
             System.out.println("El garage esta vacio");
         } else {
             this.vehicles.remove(vehicle);
             currentAumountOfVehicles = currentAumountOfVehicles - 1;
-            //aca va el sorteo del mundial cuando retira vehiculo
+            System.out.println("Se retiro el vehiculo " + vehicle);
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Ingrese quien cree que gana el mundial ");
+            String answer = scanner.nextLine();
+
+            if (answer.equalsIgnoreCase(WorldCupChampion)){
+                System.out.println("Usted gano el concurso ");
+            }else{
+                System.out.println("Usted perdio el concurso ");
+            }
+
         }
     }
     public void setWheelChangePrice(double wheelChangePrice) {
@@ -52,12 +66,12 @@ public class Garage {
         return vehicle.getTotalWheels() * wheelChangePrice;
     }
 
-    public double getAverageKilometers(ArrayList<Vehicles> vehicles){
+    public double getAverageKilometers(){
         double kilometerTotal =0;
-        for (int i = 0; i < vehicles.size(); i++) {
-            kilometerTotal = kilometerTotal + vehicles.get(i).getKilometers();
+        for (int i = 0; i < this.vehicles.size(); i++) {
+            kilometerTotal = kilometerTotal + this.vehicles.get(i).getKilometers();
         }
-        return kilometerTotal /vehicles.size();
+        return kilometerTotal /this.vehicles.size();
     }
 
      public String getGanadorMundial(){
@@ -204,48 +218,10 @@ public class Garage {
          octavosFinal.addPartido(new Partido(new Date(),mejoresGrupoF.get(0),mejoresGrupoE.get(1),new Resultado()));
          octavosFinal.addPartido(new Partido(new Date(),mejoresGrupoH.get(0),mejoresGrupoG.get(1),new Resultado()));
 
-         System.out.println("Los equipos que pasan a octavos de final son: ");
-         for (int i=0 ; i<mejoresGrupoA.size() ; i++){
-             System.out.println(mejoresGrupoA.get(i).getNombre());
-         }
-
-         for (int i=0 ; i<mejoresGrupoB.size() ; i++){
-             System.out.println(mejoresGrupoB.get(i).getNombre());
-         }
-
-         for (int i=0 ; i<mejoresGrupoC.size() ; i++){
-             System.out.println(mejoresGrupoC.get(i).getNombre());
-         }
-
-         for (int i=0 ; i<mejoresGrupoD.size() ; i++){
-             System.out.println(mejoresGrupoD.get(i).getNombre());
-         }
-
-         for (int i=0 ; i<mejoresGrupoE.size() ; i++){
-             System.out.println(mejoresGrupoE.get(i).getNombre());
-         }
-
-         for (int i=0 ; i<mejoresGrupoF.size() ; i++){
-             System.out.println(mejoresGrupoF.get(i).getNombre());
-         }
-
-         for (int i=0 ; i<mejoresGrupoG.size() ; i++){
-             System.out.println(mejoresGrupoG.get(i).getNombre());
-         }
-
-         for (int i=0 ; i<mejoresGrupoH.size() ; i++){
-             System.out.println(mejoresGrupoH.get(i).getNombre());
-         }
-
          //CUARTOS DE FINAL
          EtapaMundial cuartosFinal = new Llave();
          cuartosFinal.setDescripcionEtapa("cuartos de final");
          ArrayList<Equipo> mejoresOctavos = octavosFinal.getEquiposQueAvanzan();
-
-         System.out.println("Los equipos que pasan a cuartos de final son: ");
-         for (int i=0 ; i<mejoresOctavos.size() ; i++){
-             System.out.println(mejoresOctavos.get(i).getNombre());
-         }
 
          cuartosFinal.addPartido(new Partido(new Date(),mejoresOctavos.get(0),mejoresOctavos.get(2),new Resultado()));
          cuartosFinal.addPartido(new Partido(new Date(),mejoresOctavos.get(1),mejoresOctavos.get(3),new Resultado()));
@@ -254,12 +230,6 @@ public class Garage {
 
          //SEMI FINAL
          ArrayList<Equipo> mejoresCuartos = cuartosFinal.getEquiposQueAvanzan();
-
-         System.out.println("Los equipos que pasan a semi final son: ");
-
-         for (int i=0 ; i<mejoresCuartos.size() ; i++){
-             System.out.println(mejoresCuartos.get(i).getNombre());
-         }
 
          EtapaMundial semiFinal = new Llave();
          semiFinal.setDescripcionEtapa("semi final");
@@ -270,12 +240,6 @@ public class Garage {
          // FINAL
          ArrayList<Equipo> mejoresSemifinal = semiFinal.getEquiposQueAvanzan();
 
-         System.out.println("Los equipos que pasan a la final son: ");
-
-         for (int i=0 ; i<mejoresSemifinal.size() ; i++){
-             System.out.println(mejoresSemifinal.get(i).getNombre());
-         }
-
          EtapaMundial partidoFinal = new Llave();
          partidoFinal.setDescripcionEtapa("final");
 
@@ -284,7 +248,7 @@ public class Garage {
          // Ganador del mundial
          ArrayList<Equipo> ganador = partidoFinal.getEquiposQueAvanzan();
          System.out.println("El ganador del mundial es " + ganador.get(0).getNombre());
-            return ganador.get(0).getNombre();
+         return ganador.get(0).getNombre();
      }
 
 }

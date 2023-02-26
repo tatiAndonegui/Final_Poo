@@ -14,7 +14,7 @@ public class Grupo extends EtapaMundial{
             Equipo visitante=listaPartidos.get(i).getVisitante();
             Equipo local=listaPartidos.get(i).getLocal();
             Resultado resultado=listaPartidos.get(i).getResultado();
-            System.out.println(visitante.getNombre() + ": " + resultado.getGolesVisitante() + " " + local.getNombre() + ": " + resultado.getGolesLocales());
+
             if (resultado.empate()){
                 visitante.setPuntaje(visitante.getPuntaje() + 1);
                 local.setPuntaje(local.getPuntaje() + 1);
