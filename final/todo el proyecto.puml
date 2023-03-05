@@ -1,0 +1,97 @@
+@startuml
+class Mundial.Llave {
++ ArrayList<Equipo> getEquiposQueAvanzan()
+}
+class sistemaGarage.Garage {
+- int maximunSizeOfTheGarage
+- int currentAumountOfVehicles
+- double wheelChangePrice
+- ArrayList<Vehicles> vehicles
++ void vehicleEntry(Vehicles)
++ void vehicleExit(Vehicles,String)
++ void setWheelChangePrice(double)
++ double getWheelChangePrice()
++ void setMaximunSizeOfTheGarage(int)
++ int getMaximunSizeOfTheGarage()
++ int getCurrentAumountOfVehicles()
++ double getTotalPrice(Vehicles)
++ double getAverageKilometers()
++ String getGanadorMundial()
+}
+class Mundial.Grupo {
++ ArrayList<Equipo> getEquiposQueAvanzan()
+}
+class Mundial.Equipo {
+- String nombre
+- ArrayList<Partido> partidosJugados
+- int puntaje
++ <<Create>> Equipo(String)
++ String getNombre()
++ void setNombre(String)
++ int getPuntaje()
++ void setPuntaje(int)
+}
+class vehiculos.Vehicles {
+- String brand
+- int kilometers
+- int totalWheels
++ void setBrand(String)
++ String getBrand()
++ void setKilometers(int)
++ int getKilometers()
++ void setTotalWheels(int)
++ int getTotalWheels()
+}
+class Mundial.EtapaMundial {
+- String descripcionEtapa
+- ArrayList<Partido> partidos
++ <<Create>> EtapaMundial()
++ String getDescripcionEtapa()
++ void setDescripcionEtapa(String)
++ void addPartido(Partido)
+# ArrayList<Partido> getPartidos()
++ ArrayList<Equipo> getEquiposQueAvanzan()
+}
+class Mundial.Resultado {
+- int golesLocales
+- int golesVisitante
++ <<Create>> Resultado(int,int)
++ <<Create>> Resultado()
++ int getGolesLocales()
++ int getGolesVisitante()
++ boolean ganoLocal()
++ boolean empate()
+}
+class vehiculos.Car {
+- int numberOfDoors
++ int getNumberOfDoors()
++ void setNumberOfDoors(int)
++ String toString()
+}
+class vehiculos.Motorcycle {
+- String displacement
++ String getDisplacement()
++ void setDisplacement(String)
++ String toString()
+}
+class Mundial.Partido {
+- Date fecha
+- Equipo local
+- Equipo visitante
+- Resultado resultado
++ <<Create>> Partido(Date,Equipo,Equipo,Resultado)
++ Resultado getResultado()
++ Equipo getLocal()
++ Equipo getVisitante()
++ void setEquipo(EtapaMundial)
+}
+class sistemaGarage.GarageTest {
++ {static} void main(String[])
+}
+
+
+Mundial.EtapaMundial <|-- Mundial.Llave
+Mundial.EtapaMundial <|-- Mundial.Grupo
+vehiculos.Vehicles <|-- vehiculos.Car
+vehiculos.Vehicles <|-- vehiculos.Motorcycle
+@enduml
